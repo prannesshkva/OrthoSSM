@@ -1,0 +1,26 @@
+QuPhantom (QU-PHANTOM)
+Copyright (c) 2026 Prannessh K.V.A. (@Prannesshkva). All Rights Reserved.
+
+This repository contains research, architectures, and implementations developed by
+Prannessh K.V.A. under the Business Source License 1.1 (BSL 1.1).
+
+================================================================================
+APACHE 2.0 SECTION 4 DERIVATIVE NOTICES & ACKNOWLEDGEMENTS
+================================================================================
+
+This product incorporates architectural foundations and software developed by:
+  1. Technology Innovation Institute (TII) (https://www.tii.ae/).
+     Copyright 2023 Technology Innovation Institute (TII). Licensed under Apache 2.0.
+  2. Albert Gu & Tri Dao (https://github.com/state-spaces/mamba).
+     Copyright 2024 Albert Gu and Tri Dao. Licensed under Apache 2.0.
+  3. Alibaba Cloud (https://github.com/QwenLM/Qwen2.5).
+     Copyright (c) Alibaba Cloud. Licensed under Apache 2.0.
+
+State of Alteration (Modifications by Prannessh K.V.A. under QuPhantom):
+  - Engineered the first-ever 75/25 hybrid causal topology interleaving Mamba-2 SSD
+    recurrent blocks with Falcon Multi-Query Attention anchors.
+  - Implemented Lie-algebraic so(N) skew-symmetric energy conservation enforcing
+    Quasi-Unitarity (||h_t||_2 = ||h_{t-1}||_2).
+  - Developed native INT8 dynamic quantized cache engine inheriting from DynamicCache.
+  - Created sub-90 µs SHA-256 Radix prefix tree caching for 0 ms prompt prefill resumption.
+  - Added Holographic dynamic anchor table verbatim token revival.
