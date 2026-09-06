@@ -70,6 +70,31 @@ assert torch.allclose(prev_state, recovered_prev_state, atol=1e-5)
 
 ---
 
+
+### Zero-Training Deliberative Reasoning Engine (Frozen Model Controller)
+
+Run deep test-time MCTS tree search and (1)$ multi-hop rollbacks on any frozen Transformer without training:
+
+`ash
+python test_ortho_deliberative_search.py
+`
+
+`python
+from orthossm_runtime_controller import OrthoMemoryManager, CyclicManifoldVerifier, MultiHopInversionEngine
+
+# 1. Drop-in replacement for KV cache with sub-100MB cap
+memory_manager = OrthoMemoryManager(max_active_tokens=4096, state_dim=64, enable_int8=True)
+
+# 2. Multi-hop rollback in O(1) time
+engine = MultiHopInversionEngine(state_dim=64)
+h_0 = engine.hop_backward(final_state, U_hop, Delta_H)
+
+# 3. Intrinsic hallucination verification via Lie manifold geodesic curvature
+verifier = CyclicManifoldVerifier(tolerance=0.08)
+result = verifier.evaluate_reasoning_step(step_hidden_states)
+print('Is Valid:', result['is_valid'], 'Confidence:', result['confidence_score'])
+`
+
 ## Citation
 
 ```bibtex
