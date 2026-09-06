@@ -65,14 +65,16 @@ class AnalyticalLieOperator:
         """
         Computes exact Cayley retraction: U = (I - 0.5*s*A)^(-1) (I + 0.5*s*A) in SO(N).
         A: (..., N, N) skew-symmetric
+        Note: Casts to float32 internally to guarantee compatibility with PyTorch/CUDA cuSOLVER 
+        which does not implement lu_factor for BFloat16/Float16.
         """
         N = A.shape[-1]
         device = A.device
-        dtype = A.dtype
-        I = torch.eye(N, device=device, dtype=dtype).expand_as(A)
-        half_A = 0.5 * scale * A
-        # Solve (I - half_A) @ U = (I + half_A)
-        U = torch.linalg.solve(I - half_A, I + half_A)
+        orig_dtype = A.dtype
+        A_f32 = A.to(torch.float32)
+        I = torch.eye(N, device=device, dtype=torch.float32).expand_as(A_f32)
+        half_A = 0.5 * scale * A_f32
+        U = torch.linalg.solve(I - half_A, I + half_A).to(orig_dtype)
         return U
 
     @staticmethod
