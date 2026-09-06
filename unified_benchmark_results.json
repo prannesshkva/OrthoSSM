@@ -1,0 +1,98 @@
+{
+  "models": [
+    {
+      "model": "OrthoSSM-130M",
+      "params_m": 242.4,
+      "state_kb": 576.0,
+      "throughput_tok_s": 2.6,
+      "latency_ms_tok": 388.0
+    },
+    {
+      "model": "OrthoSSM-Mamba-Falcon-Hybrid",
+      "params_m": 195.4,
+      "state_kb": 1152.0,
+      "throughput_tok_s": 16.9,
+      "latency_ms_tok": 59.3
+    }
+  ],
+  "hop_inversion": [
+    {
+      "chunk_k": 16,
+      "sequential_ms": 27.137,
+      "hop_ms": 68.93,
+      "speedup": 0.4,
+      "error": 1.9821624648696894e-15
+    },
+    {
+      "chunk_k": 32,
+      "sequential_ms": 53.971,
+      "hop_ms": 75.447,
+      "speedup": 0.7,
+      "error": 3.241964895695361e-15
+    },
+    {
+      "chunk_k": 64,
+      "sequential_ms": 117.054,
+      "hop_ms": 140.998,
+      "speedup": 0.8,
+      "error": 5.705562388108569e-15
+    },
+    {
+      "chunk_k": 128,
+      "sequential_ms": 243.56,
+      "hop_ms": 305.446,
+      "speedup": 0.8,
+      "error": 9.695536192372333e-15
+    },
+    {
+      "chunk_k": 256,
+      "sequential_ms": 474.683,
+      "hop_ms": 1375.554,
+      "speedup": 0.3,
+      "error": 1.91679161248999e-14
+    }
+  ],
+  "wide_matrix": {
+    "memory_mb_32_layers": 8.0,
+    "recall_energy": 26.5594,
+    "status": "PASS"
+  },
+  "memory_scaling": [
+    {
+      "context_tokens": 1024,
+      "transformer_kv_mb": 96.0,
+      "orthossm_state_mb": 8.0,
+      "savings_ratio": 12.0
+    },
+    {
+      "context_tokens": 4096,
+      "transformer_kv_mb": 384.0,
+      "orthossm_state_mb": 8.0,
+      "savings_ratio": 48.0
+    },
+    {
+      "context_tokens": 8192,
+      "transformer_kv_mb": 768.0,
+      "orthossm_state_mb": 8.0,
+      "savings_ratio": 96.0
+    },
+    {
+      "context_tokens": 16384,
+      "transformer_kv_mb": 1536.0,
+      "orthossm_state_mb": 8.0,
+      "savings_ratio": 192.0
+    },
+    {
+      "context_tokens": 32768,
+      "transformer_kv_mb": 3072.0,
+      "orthossm_state_mb": 8.0,
+      "savings_ratio": 384.0
+    },
+    {
+      "context_tokens": 65536,
+      "transformer_kv_mb": 6144.0,
+      "orthossm_state_mb": 8.0,
+      "savings_ratio": 768.0
+    }
+  ]
+}
